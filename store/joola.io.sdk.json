@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+
+  "server": {
+    "port": 40001,
+    "securePort": 50001,
+    "secure": false,
+    "keyFile": "/certs/key.key",
+    "certFile": "/certs/cert.cert",
+    "controlPort": {
+      "enabled": false,
+      "port": 60001,
+      "secure": true,
+      "securePort": 70001,
+      "exitOnStop": false
+    }
+  },
+  "auth": {
+    "anonymous": false,
+    "whitelist": ["127.0.0.1"]
+  },
+  "store": {
+    "path": "./store"
+  }
+}
