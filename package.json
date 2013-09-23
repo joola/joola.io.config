@@ -45,7 +45,6 @@
     "winston": "*",
     "request": "*",
     "process": "*",
-    "underscore": "1.x",
     "nconf":"*"
   },
   "devDependencies": {
