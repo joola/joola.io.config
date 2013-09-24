@@ -49,7 +49,6 @@ Testing
 npm test   
 ```
 
-
 [1]: https://coveralls.io/repos/joola/joola.io.config/badge.png
 [2]: https://coveralls.io/r/joola/joola.io.config
 [3]: http://ci.joo.la/buildStatus/icon?job=ci-joola.io.config-nightly
