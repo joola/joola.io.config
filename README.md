@@ -2,7 +2,9 @@ joola.io.config
 ===============
 joola.io Configuration Node.
 
-[![Build Status][3]][4] [![dependency status][5]][6] [![dev dependency status][7]][8] [![Coverage Status][1]][2]
+<a href='http://ci.joo.la/job/ci-joola.io.config-nightly/'><img src='http://ci.joo.la/buildStatus/icon?job=ci-joola.io.config-nightly'></a>
+
+[![Build Status](http://ci.joo.la/buildStatus/icon?job=ci-joola.io.config-nightly)](http://ci.joo.la/job/ci-joola.io.config-nightly/) [![dependency status][5]][6] [![dev dependency status][7]][8] [![Coverage Status][1]][2]
 [![NPM](https://nodei.co/npm/joola.io.config.png)](https://nodei.co/npm/joola.io.config/)
 
 The configuration node is used to support joola.io's distributed framework.
