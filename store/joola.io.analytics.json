@@ -1,7 +1,7 @@
 {
   "version": "0.0.1",
 
-  "loglevel": "info",
+  "loglevel": "silly",
 
   "server": {
     "serverName": "joola-analytics",
