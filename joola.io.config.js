@@ -68,7 +68,6 @@ app.get('/conf/:provider/:env/:id', function (req, res) {
     var content = {result: true, conf: JSON.parse(data)};
 
     // Invoke the next step here however you like
-    console.log(content);   // Put all of the code here (not the best solution)
     res.json(content);
   });
 });
@@ -83,7 +82,6 @@ app.get('/conf/:env/:id', function (req, res) {
     var content = {result: true, conf: JSON.parse(data)};
 
     // Invoke the next step here however you like
-    console.log(content);   // Put all of the code here (not the best solution)
     res.json(content);
   });
 });
@@ -98,7 +96,6 @@ app.get('/conf/:id', function (req, res) {
     var content = {result: true, conf: JSON.parse(data)};
 
     // Invoke the next step here however you like
-    console.log(content);   // Put all of the code here (not the best solution)
     res.json(content);
   });
 });
