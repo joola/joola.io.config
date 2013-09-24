@@ -8,11 +8,11 @@
     "keyFile": "/certs/key.key",
     "certFile": "/certs/cert.cert",
     "controlPort": {
-      "enabled": false,
+      "enabled": true,
       "port": 60001,
-      "secure": true,
+      "secure": false,
       "securePort": 70001,
-      "exitOnStop": false
+      "exitOnStop": true
     }
   },
   "auth": {
