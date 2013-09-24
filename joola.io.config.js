@@ -54,20 +54,30 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-app.get('/conf/:id/:prop', function (req, res) {
-  var filePath = path.join(nconf.get('store:path'), req.params.id + '.json');
-  var content = {};
+app.get('/conf/:provider/:env/:id', function (req, res) {
+  var filePath = path.join(nconf.get('store:path'), req.params.provider, req.params.env, req.params.id + '.json');
+
   fs.readFile(filePath, 'utf8', function read(err, data) {
     if (err) {
       return res.json({result: false, err: err});
     }
-    try {
-      content = {result: true, conf: { }};
-      content.conf[req.params.prop] = JSON.parse(data)[req.params.prop];
+    var content = {result: true, conf: JSON.parse(data)};
+
+    // Invoke the next step here however you like
+    console.log(content);   // Put all of the code here (not the best solution)
+    res.json(content);
+  });
+});
+
+app.get('/conf/:env/:id', function (req, res) {
+  var filePath = path.join(nconf.get('store:path'), req.params.env, req.params.id + '.json');
+
+  fs.readFile(filePath, 'utf8', function read(err, data) {
+    if (err) {
+      return res.json({result: false, err: err});
     }
-    catch (ex) {
-      return res.json({result: false, err: ex});
-    }
+    var content = {result: true, conf: JSON.parse(data)};
+
     // Invoke the next step here however you like
     console.log(content);   // Put all of the code here (not the best solution)
     res.json(content);

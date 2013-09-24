@@ -45,7 +45,7 @@
     "winston": "*",
     "request": "*",
     "process": "*",
-    "nconf":"*"
+    "nconf": "*"
   },
   "devDependencies": {
     "mocha-lcov-reporter": "0.x",
