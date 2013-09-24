@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "joola.io.logger": "3.x",
-
     "express": "3.x",
     "node-controlport": "0.x",
     "jade": "0.x",
