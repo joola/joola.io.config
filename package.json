@@ -1,7 +1,7 @@
 {
   "name": "joola.io.config",
   "preferGlobal": false,
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "Joola <info@joo.la>",
   "description": "joola.io's configuration node",
   "engine": "node >= 0.10.x",
@@ -32,11 +32,11 @@
       "pattern": "lib",
       "data-cover-never": "node_modules"
     },
-    "coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js"
+    "coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js",
+    "citest": "mocha --reporter xunit > test-reports.xml"
   },
   "dependencies": {
     "joola.io.logger": "3.x",
-
     "express": "3.x",
     "node-controlport": "0.x",
     "jade": "0.x",
