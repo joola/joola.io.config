@@ -3,7 +3,7 @@
 var
   path = require('path');
 
-global.test = true;
+global.test = true;  
 
 global.sinon = require('sinon');
 global.should = require('should');
