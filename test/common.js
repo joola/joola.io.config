@@ -3,7 +3,7 @@
 var
   path = require('path');
 
-global.test = true;  
+global.test = true;
 
 global.sinon = require('sinon');
 global.should = require('should');
@@ -14,4 +14,4 @@ var chai = require('chai');
 chai.use(require('sinon-chai'));
 global.expect = chai.expect;
 
-global.common = exports;
+global.common = exports; 
