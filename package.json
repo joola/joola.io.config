@@ -1,7 +1,7 @@
 {
   "name": "joola.io.config",
   "preferGlobal": false,
-  "version": "3.0.0",
+  "version": "3.0.1",
   "author": "Joola <info@joo.la>",
   "description": "joola.io's configuration node",
   "engine": "node >= 0.10.x",
@@ -35,9 +35,10 @@
     "coveralls": "mocha --require blanket --reporter mocha-lcov-reporter | node ./node_modules/coveralls/bin/coveralls.js"
   },
   "dependencies": {
+    "joola.io.logger": "3.x",
     "express": "3.x",
-    "node-controlport":"0.x",
-    "jade":"0.x",
+    "node-controlport": "0.x",
+    "jade": "0.x",
     "path": "*",
     "ncp": "*",
     "async": "*",
@@ -45,7 +46,7 @@
     "winston": "*",
     "request": "*",
     "process": "*",
-    "nconf":"*"
+    "nconf": "*"
   },
   "devDependencies": {
     "mocha-lcov-reporter": "0.x",
@@ -57,7 +58,7 @@
     "sinon-chai": "2.x",
     "blanket": "1.x",
     "jshint": "2.x",
-    "supertest":"0.x"
+    "supertest": "0.x"
   },
   "license": "GPL-3.0"
 }

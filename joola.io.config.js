@@ -13,12 +13,16 @@ var
   fs = require('fs'),
   nconf = require('nconf'),
   path = require('path'),
-  logger = require('./lib/shared/logger'),
+  logger = require('joola.io.logger'),
   http = require('http'),
   https = require('https'),
   express = require('express');
 
 var app = global.app = express();
+
+var joola = {};
+global.joola = joola;
+joola.logger = logger;
 
 //Configuration
 nconf.argv()
@@ -42,7 +46,7 @@ app.use(express.methodOverride());
 //Logger
 var winstonStream = {
   write: function (message, encoding) {
-    logger.info(message);
+    joola.logger.info(message);
   }
 };
 
@@ -54,20 +58,30 @@ app.get('/', function (req, res) {
   res.render('index');
 });
 
-app.get('/conf/:id/:prop', function (req, res) {
-  var filePath = path.join(nconf.get('store:path'), req.params.id + '.json');
-  var content = {};
+app.get('/conf/:provider/:env/:id', function (req, res) {
+  var filePath = path.join(nconf.get('store:path'), req.params.provider, req.params.env, req.params.id + '.json');
+
   fs.readFile(filePath, 'utf8', function read(err, data) {
     if (err) {
       return res.json({result: false, err: err});
     }
-    try {
-      content = {result: true, conf: { }};
-      content.conf[req.params.prop] = JSON.parse(data)[req.params.prop];
+    var content = {result: true, conf: JSON.parse(data)};
+
+    // Invoke the next step here however you like
+    console.log(content);   // Put all of the code here (not the best solution)
+    res.json(content);
+  });
+});
+
+app.get('/conf/:env/:id', function (req, res) {
+  var filePath = path.join(nconf.get('store:path'), req.params.env, req.params.id + '.json');
+
+  fs.readFile(filePath, 'utf8', function read(err, data) {
+    if (err) {
+      return res.json({result: false, err: err});
     }
-    catch (ex) {
-      return res.json({result: false, err: ex});
-    }
+    var content = {result: true, conf: JSON.parse(data)};
+
     // Invoke the next step here however you like
     console.log(content);   // Put all of the code here (not the best solution)
     res.json(content);
@@ -102,7 +116,7 @@ var startHTTP = function (callback) {
         return callback(result);
       }
       status = 'Running';
-      logger.info('joola.io configuration HTTP server listening on port ' + port);
+      joola.logger.info('joola.io configuration HTTP server listening on port ' + port);
       result.status = 'Success';
       httpServer = _httpServer;
       return callback(result);
@@ -111,7 +125,7 @@ var startHTTP = function (callback) {
         return callback(result);
       }).on('close', function () {
         status = 'Stopped';
-        logger.warn('joola.io configuration HTTP server listening on port ' + port.toString() + ' received a CLOSE command.');
+        joola.logger.warn('joola.io configuration HTTP server listening on port ' + port.toString() + ' received a CLOSE command.');
       });
   }
   catch (ex) {
@@ -135,7 +149,7 @@ var startHTTPS = function (callback) {
         result.status = 'Failed: ' + ex.message;
         return callback(result);
       }
-      logger.info('joola.io configuration HTTPS server listening on port ' + secureport);
+      joola.logger.info('joola.io configuration HTTPS server listening on port ' + secureport);
       result.status = 'Success';
       httpsServer = _httpsServer;
       return callback(result);
@@ -143,7 +157,7 @@ var startHTTPS = function (callback) {
         result.status = 'Failed: ' + ex.message;
         return callback(result);
       }).on('close', function () {
-        logger.warn('Jjoola.io configuration HTTPS server listening on port ' + secureport.toString() + ' received a CLOSE command.');
+        joola.logger.warn('Jjoola.io configuration HTTPS server listening on port ' + secureport.toString() + ' received a CLOSE command.');
       });
   }
   catch (ex) {
@@ -211,6 +225,6 @@ if (nconf.get('server:controlPort:enabled') === true) {
   });
 
   cp.start(nconf.get('server:controlPort:port'), cp_endpoints, function () {
-    logger.info('joola.io configuration control port listening on port ' + nconf.get('server:controlPort:port'));
+    joola.logger.info('joola.io configuration control port listening on port ' + nconf.get('server:controlPort:port'));
   });
 }
