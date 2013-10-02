@@ -52,8 +52,8 @@ npm test
 
 [1]: https://coveralls.io/repos/joola/joola.io.config/badge.png
 [2]: https://coveralls.io/r/joola/joola.io.config
-[3]: https://travis-ci.org/joola/joola.io.png
-[4]: https://travis-ci.org/joola/joola.io
+[3]: https://travis-ci.org/joola/joola.io.config.png
+[4]: https://travis-ci.org/joola/joola.io.config
 [5]: https://david-dm.org/joola/joola.io.config.png
 [6]: https://david-dm.org/joola/joola.io.config
 [7]: https://david-dm.org/joola/joola.io.config/dev-status.png
