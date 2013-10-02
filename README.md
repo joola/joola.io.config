@@ -24,12 +24,12 @@ $ npm install joola.io.config
 ```
 
 ### Using
-```
-curl http://localhost:40001/conf/joola.io.analytics
+```bash
+$ curl http://localhost:40001/conf/joola.io.analytics
 ```
 
 #### Using with [nconf-http][30]
-```
+```JavaScript
 var nconf = require('nconf');
 
 require('nconf-http');
