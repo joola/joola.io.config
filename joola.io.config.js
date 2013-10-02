@@ -20,6 +20,8 @@ var
 
 var app = global.app = express();
 
+//test
+
 var joola = {};
 global.joola = joola;
 joola.logger = logger;

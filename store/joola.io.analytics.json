@@ -1,5 +1,5 @@
 {
-  "version": "0.0.1",
+  "version": "0.0.2",
 
   "loglevel": "silly",
 
@@ -24,10 +24,10 @@
     }
   },
   "engine": {
-    "host": "127.0.0.1",
-    "port": 8080,
-    "secure": true,
-    "contentHost": "https://127.0.0.1",
+    "host": null,
+    "port": 40004,
+    "secure": false,
+    "contentHost": null,
     "bootstrap": false,
     "authToken": "d2ead440-eb12-11e2-91e2-0800200c9a66",
     "loginRedirectUrl": null

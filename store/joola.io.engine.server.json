@@ -1,0 +1,27 @@
+{
+  "server": {
+    "version": "0.0.2",
+
+    "logLevel": "debug",
+
+    "flatFileDirectory": "./public/",
+    "developmentMode": true,
+    "port": 40004,
+    "securePort": 50004,
+    "secure": false,
+    "keyFile": "./config/certs/key.pem",
+    "certFile": "./config/certs/cert.pem",
+
+    "controlPort": {
+      "enabled": true,
+      "port": 60004,
+      "secure": false,
+      "securePort": 70004,
+      "exitOnStop": true
+    },
+    "redis": {
+      "host": "db.joola.io",
+      "port": 6379
+    }
+  }
+}
