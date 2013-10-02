@@ -1,0 +1,64 @@
+{
+  "auth": {
+    "version": "0.0.2",
+
+    "authToken": "d2ead440-eb12-11e2-91e2-0800200c9a66",
+    "bypassToken": "123",
+    "whitelist": ["127.0.0.1"],
+    "store": "joola",
+    "tokenExpiresAfter": 1200000,
+    "permissions": [
+      {
+        "id": "access_system",
+        "description": "This role can access the system"
+      },
+      {
+        "id": "manage_system",
+        "description": "This role can manage the system."
+      }
+    ],
+    "roles": [
+      {
+        "id": "admin",
+        "permissions": ["access_system", "manage_system"],
+        "filter": null
+      },
+      {
+        "id": "user",
+        "permissions": ["access_system"],
+        "filter": null
+      }
+    ],
+    "organizations": [
+      {
+        "id": "joola",
+        "name": "Joola Smart Solutions Ltd",
+        "description": "This organization stores users for system access and maintenance.",
+        "filter": null,
+        "roles": [
+          {}
+        ],
+        "users": [
+          {
+            "id": 1,
+            "_username": "admin",
+            "displayName": "Admin",
+            "_email": "admin@joo.la",
+            "_password": "password",
+            "_roles": ["admin"],
+            "_filter": null
+          },
+          {
+            "id": 2,
+            "_username": "demo",
+            "displayName": "Demo",
+            "_email": "demo@joo.la",
+            "_password": "password",
+            "_roles": ["user"],
+            "_filter": null
+          }
+        ]
+      }
+    ]
+  }
+}

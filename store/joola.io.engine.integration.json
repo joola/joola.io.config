@@ -1,0 +1,334 @@
+{
+  "integration": {
+    "version": "0.0.3",
+
+    "cache": {
+      "lockTimeout": 5000,
+      "waitOnCache": 5000,
+      "waitInterval": 500
+    },
+    "datasources": [
+      {
+        "id": "demo",
+        "name": "demo-mysql",
+        "type": "mysql",
+        "host": "db.joola.io",
+        "port": 3306,
+        "user": "joolaio",
+        "password": "joolaio",
+        "dbname": "demo_serverfault",
+        "limit": null,
+        "minresolution": "day",
+        "enddate": {
+          "type": "query",
+          "daystotrim": "0",
+          "query": "select max(users_creationdate) as max_date from vw_users;",
+          "maxcachedate": "vw_users"
+        },
+        "datatables": [
+          {
+            "id": "vw_users",
+            "name": "vw_users",
+            "type": "data",
+            "primarykey": "users_id",
+            "dates": ["users_creationdate"],
+            "dimensions": [
+              {
+                "id": "vw_users.users_location",
+                "name": "Location",
+                "virtual": true,
+                "column": "users_location",
+                "category": "Demographics",
+                "roles": ["admin", "user"]
+              },
+              {
+                "id": "vw_users.users_id",
+                "name": "User ID",
+                "virtual": true,
+                "column": "users_id",
+                "category": "Demographics",
+                "roles": ["admin", "user"]
+              }
+            ],
+            "metrics": [
+              {
+                "id": "vw_users.reputation",
+                "column": "users_reputation",
+                "virtual": false,
+                "name": "Avg Reputation",
+                "description": "Avg. user reputation",
+                "type": "float",
+                "aggregation": "avg",
+
+                "prefix": null,
+                "suffix": null,
+
+                "formula": null,
+
+                "ratiodirection": 1,
+                "category": "Users",
+                "visible": true,
+                "deleted": false,
+                "roles": ["admin", "user"]
+              },
+              {
+                "id": "vw_users.registrations",
+                "column": "register_count",
+                "virtual": false,
+                "name": "Registrations",
+                "description": "Total number of new user registrations",
+                "type": "int",
+                "aggregation": "sum",
+
+                "prefix": null,
+                "suffix": null,
+
+                "formula": null,
+
+                "ratiodirection": 1,
+                "category": "Users",
+                "visible": true,
+                "deleted": false,
+                "roles": ["admin", "user"]
+              }
+            ],
+            "references": [
+            ],
+            "caching": {
+              "system": {
+                "type": "mongo",
+                "url": "mongodb://db.joola.io/demo"
+              },
+              "baseline": 100,
+              "step": 30,
+              "method": "persist",
+              "interval": 1800000,
+              "chunkSize": 20000,
+              "maxdop": 1,
+              "eager": {
+                "interval": 0,
+                "step": 0
+              }
+            }
+          },
+          {
+            "id": "vw_posts",
+            "name": "vw_posts",
+            "type": "data",
+            "primarykey": "posts_id",
+            "dates": ["posts_creationdate"],
+            "dimensions": [
+              {
+                "id": "vw_posts.tags",
+                "name": "Tags",
+                "virtual": true,
+                "column": "posts_tags",
+                "category": "Posts",
+                "roles": ["admin", "user"]
+              }
+            ],
+            "metrics": [
+              {
+                "id": "vw_posts.postcount",
+                "column": "1",
+                "virtual": true,
+                "name": "Post Count",
+                "description": "Total count of posts",
+                "type": "int",
+                "aggregation": "sum",
+
+                "prefix": null,
+                "suffix": null,
+
+                "formula": null,
+
+                "ratiodirection": 1,
+                "category": "Posts",
+                "visible": true,
+                "deleted": false,
+                "roles": ["admin", "user"]
+              },
+              {
+                "id": "vw_posts.questioncount",
+                "column": "case when posts_type = 1 then 1 else 0 end",
+                "virtual": true,
+                "name": "Question Count",
+                "description": "Total count of questions",
+                "type": "int",
+                "aggregation": "sum",
+
+                "prefix": null,
+                "suffix": null,
+
+                "formula": null,
+
+                "ratiodirection": 1,
+                "category": "Posts",
+                "visible": true,
+                "deleted": false,
+                "roles": ["admin", "user"]
+              },
+              {
+                "id": "vw_posts.questionscore",
+                "column": "case when posts_type = 1 then posts_score else 0 end",
+                "virtual": true,
+                "name": "Avg Score",
+                "description": "Avg. question score",
+                "type": "float",
+                "aggregation": "avg",
+
+                "prefix": null,
+                "suffix": null,
+
+                "formula": null,
+
+                "ratiodirection": 1,
+                "category": "Posts",
+                "visible": true,
+                "deleted": false,
+                "roles": ["admin", "user"]
+              }
+            ],
+            "references": [
+              {
+                "id": "users",
+                "datatableid": "vw_users",
+                "columns": [
+                  {
+                    "base": "posts_owneruserid",
+                    "foreign": "users_id"
+                  }
+                ]
+              }
+            ],
+            "caching": {
+              "system": {
+                "type": "mongo",
+                "url": "mongodb://db.joola.io/demo"
+              },
+
+              "baseline": 100,
+              "step": 30,
+              "method": "persist",
+              "interval": 1800000,
+              "chunkSize": 20000,
+              "maxdop": 1,
+              "eager": {
+                "interval": 0,
+                "step": 0
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "dimensions": [
+      {
+        "id": "date.date",
+        "name": "Date",
+        "column": "date",
+        "description": "Date",
+        "type": "date",
+        "category": "Date",
+        "virtual": true,
+        "visible": true,
+        "deleted": false,
+        "parent": null,
+        "children": [],
+        "roles": ["admin", "user", "operator"]
+      },
+      {
+        "id": "date.dayofweek",
+        "name": "Day of Week",
+        "column": "date",
+        "description": "Day of Week",
+        "type": "date",
+        "category": "Date",
+        "virtual": true,
+        "visible": true,
+        "deleted": false,
+        "parent": null,
+        "children": [],
+        "roles": ["admin", "user", "operator"]
+      },
+      {
+        "id": "date.month",
+        "name": "Month",
+        "column": "date",
+        "description": "Month",
+        "type": "date",
+        "category": "Date",
+        "virtual": true,
+        "visible": true,
+        "deleted": false,
+        "parent": null,
+        "children": [],
+        "roles": ["admin", "user", "operator"]
+      },
+      {
+        "id": "date.quarter",
+        "name": "Quarter",
+        "column": "date",
+        "description": "Quarter",
+        "type": "date",
+        "category": "Date",
+        "virtual": true,
+        "visible": true,
+        "deleted": false,
+        "parent": null,
+        "children": [],
+        "roles": ["admin", "user", "operator"]
+      },
+      {
+        "id": "date.week",
+        "name": "Week",
+        "column": "date",
+        "description": "Week",
+        "type": "date",
+        "category": "Date",
+        "virtual": true,
+        "visible": true,
+        "deleted": false,
+        "parent": null,
+        "children": [],
+        "roles": ["admin", "user", "operator"]
+      },
+      {
+        "id": "date.year",
+        "name": "Year",
+        "column": "date",
+        "description": "Year",
+        "type": "date",
+        "category": "Date",
+        "virtual": true,
+        "visible": true,
+        "deleted": false,
+        "parent": null,
+        "children": [],
+        "roles": ["admin", "user", "operator"]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "calc.contributercount",
+        "dimension": "vw_users.users_id",
+        "metric": "vw_posts.postcount",
+        "name": "Contributers Count",
+        "description": "Number of unique contributers (question or answer)",
+        "type": "int",
+        "aggregation": "count",
+
+        "prefix": null,
+        "suffix": null,
+
+        "formula": null,
+
+        "ratiodirection": 1,
+        "category": "Posts",
+        "visible": true,
+        "deleted": false,
+        "roles": ["admin", "user", "operator"]
+      }
+    ]
+  }
+}

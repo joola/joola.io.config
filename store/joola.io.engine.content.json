@@ -1,0 +1,101 @@
+{
+  "content": {
+    "version":"0.0.2",
+
+    "system": {
+      "datasource": "demo",
+      "startdate": "vw_users",
+      "enddate": "vw_users"
+    },
+    "dashboards": [
+      {
+        "id": "dashboard.default",
+        "name": "Dashboard",
+        "widgets": [
+          {
+            "type": "timeline",
+            "id": "default.widget6",
+            "title": "Registrations vs. Posts",
+            "row": 1,
+            "column": 1,
+            "dimensions": [],
+            "metrics": ["vw_users.registrations", "vw_posts.postcount"],
+            "limit": 0
+          },
+
+          {
+            "type": "metricbox",
+            "id": "default.widget1.1",
+            "title": "Contributors",
+            "row": 2,
+            "column": 2,
+            "dimensions": [],
+            "metrics": ["calc.contributercount"],
+            "limit": 0
+          },
+          {
+            "type": "metricbox",
+            "id": "default.widget1",
+            "title": "Registrations",
+            "row": 1,
+            "column": 2,
+            "dimensions": [],
+            "metrics": ["vw_users.registrations"],
+            "limit": 0
+          },
+          {
+            "type": "metricbox",
+            "id": "default.widget2",
+            "title": "Question Count",
+            "row": 2,
+            "column": 2,
+            "dimensions": [],
+            "metrics": ["vw_posts.questioncount"],
+            "limit": 0
+          },
+          {
+            "type": "metricbox",
+            "id": "default.widget3",
+            "title": "Avg. Question Score",
+            "row": 2,
+            "column": 2,
+            "dimensions": [],
+            "metrics": ["vw_posts.questionscore"],
+            "limit": 0
+          }
+        ],
+        "roles": ["user", "operator"]
+      }
+    ],
+    "reports": [
+      {
+        "id": "demo.registrations",
+        "name": "Registrations",
+        "description": "Registrations report",
+        "tabs": [
+          {
+            "id": "demo.registrations.explorer",
+            "type": "explorer",
+            "ordinal": 1,
+            "dimensions": ["vw_users.users_location"],
+            "drilldowns": [
+              {
+                "level": 0,
+                "dimensions": ["vw_users.users_location"]
+              }
+            ],
+            "metricgroups": [
+              {
+                "id": "demo.registrations.explorer.registrations",
+                "name": "Registrations",
+                "ordinal": 1,
+                "metrics": ["calc.contributercount", "vw_users.reputation", "vw_users.registrations", "vw_posts.questioncount", "vw_posts.questionscore"]
+              }
+            ]
+          }
+        ],
+        "roles": ["user", "operator"]
+      }
+    ]
+  }
+}
