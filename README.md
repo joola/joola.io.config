@@ -100,3 +100,6 @@ Copyright (c) 2012-2013 Joola Smart Solutions. GPLv3 Licensed, see [LICENSE][24]
 [29]: https://joolatech.atlassian.net/wiki/display/JAD/Developers/Coding+Guidelines
 [30]: http://github.com/itayw/nconf-http
 [31]: http://expressjs.com/
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joola/joola.io.config/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
