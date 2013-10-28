@@ -61,7 +61,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/conf/:provider/:env/:id', function (req, res) {
-  var filePath = path.join(nconf.get('store:path'), req.params.provider, req.params.env, req.params.id + '.json');
+  var filePath = path.resolve(nconf.get('store:path'), req.params.provider, req.params.env, req.params.id + '.json');
 
   fs.readFile(filePath, 'utf8', function read(err, data) {
     if (err) {
@@ -75,7 +75,7 @@ app.get('/conf/:provider/:env/:id', function (req, res) {
 });
 
 app.get('/conf/:env/:id', function (req, res) {
-  var filePath = path.join(nconf.get('store:path'), req.params.env, req.params.id + '.json');
+  var filePath = path.resolve(nconf.get('store:path'), req.params.env, req.params.id + '.json');
 
   fs.readFile(filePath, 'utf8', function read(err, data) {
     if (err) {
@@ -89,7 +89,7 @@ app.get('/conf/:env/:id', function (req, res) {
 });
 
 app.get('/conf/:id', function (req, res) {
-  var filePath = path.join(nconf.get('store:path'), req.params.id + '.json');
+  var filePath = path.resolve(nconf.get('store:path'), req.params.id + '.json');
 
   fs.readFile(filePath, 'utf8', function read(err, data) {
     if (err) {
