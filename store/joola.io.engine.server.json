@@ -22,6 +22,18 @@
     "redis": {
       "host": "db.joola.io",
       "port": 6379
+    },
+    "auth": {
+      "anonymous": false,
+      "sessions": false,
+      "whitelist": ["127.0.0.1"],
+      "bypassToken": "123",
+      "endpoint": {
+        "secure": false,
+        "host": "localhost",
+        "port": "8080",
+        "authToken": "d2ead440-eb12-11e2-91e2-0800200c9a66"
+      }
     }
   }
 }
