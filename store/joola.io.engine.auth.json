@@ -45,7 +45,7 @@
             "displayName": "Admin",
             "_email": "admin@joo.la",
             "_password": "password",
-            "_roles": ["admin"],
+            "_roles": ["admin", "user"],
             "_filter": null
           },
           {
