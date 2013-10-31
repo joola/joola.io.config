@@ -31,7 +31,7 @@
       "endpoint": {
         "secure": false,
         "host": "localhost",
-        "port": "8080",
+        "port": "40004",
         "authToken": "d2ead440-eb12-11e2-91e2-0800200c9a66"
       }
     }
