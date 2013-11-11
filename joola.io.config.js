@@ -35,7 +35,7 @@ var port = nconf.get('server:port');
 var secureport = nconf.get('server:securePort');
 
 if (!nconf.get('version')) {
-  throw new Error('Failed to load configuration.');
+  throw new Error('Failed to load configuration from: ' + nconf.get('conf') || './config/joola.io.config.json');
 }
 
 //Application settings
