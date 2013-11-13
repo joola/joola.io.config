@@ -26,16 +26,18 @@ var joola = {};
 global.joola = joola;
 joola.logger = logger;
 
+var configFile =typeof nconf.get('conf') == 'undefined' ? path.join(__dirname ,'./config/joola.io.config.json') : nconf.get('conf');
+console.log(configFile);
 //Configuration
 nconf.argv()
   .env()
-  .file({ file: nconf.get('conf') || './config/joola.io.config.json' });
+  .file({ file: (configFile)});
 
 var port = nconf.get('server:port');
 var secureport = nconf.get('server:securePort');
 
 if (!nconf.get('version')) {
-  throw new Error('Failed to load configuration.');
+  throw new Error('Failed to load configuration from: ' + configFile);
 }
 
 //Application settings
