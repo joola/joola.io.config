@@ -27,7 +27,6 @@ global.joola = joola;
 joola.logger = logger;
 
 var configFile =typeof nconf.get('conf') == 'undefined' ? path.join(__dirname ,'./config/joola.io.config.json') : nconf.get('conf');
-console.log(configFile);
 //Configuration
 nconf.argv()
   .env()
