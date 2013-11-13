@@ -45,7 +45,7 @@
                 "id": "vw_users.users_id",
                 "name": "User ID",
                 "virtual": true,
-                "column": "users_id",
+                "column": "users_id_string",
                 "category": "Demographics",
                 "roles": ["admin", "user"]
               }
@@ -97,9 +97,9 @@
             "caching": {
               "system": {
                 "type": "mongo",
-                "url": "mongodb://db.joola.io/demo"
+                "url": "mongodb://db.joola.io/demo_serverfault"
               },
-              "baseline": 100,
+              "baseline": 0,
               "step": 30,
               "method": "persist",
               "interval": 1800000,
@@ -204,10 +204,10 @@
             "caching": {
               "system": {
                 "type": "mongo",
-                "url": "mongodb://db.joola.io/demo"
+                "url": "mongodb://db.joola.io/demo_serverfault"
               },
 
-              "baseline": 100,
+              "baseline": 0,
               "step": 30,
               "method": "persist",
               "interval": 1800000,
