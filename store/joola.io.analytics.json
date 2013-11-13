@@ -23,7 +23,7 @@
       "exitOnStop": true
     },
     "auth": {
-      "anonymous": false,
+      "anonymous": true,
       "sessions": true,
       "whitelist": null,
       "bypassToken": "1234",
