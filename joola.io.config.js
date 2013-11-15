@@ -26,11 +26,14 @@ var joola = {};
 global.joola = joola;
 joola.logger = logger;
 
-var configFile =typeof nconf.get('conf') == 'undefined' ? path.join(__dirname ,'./config/joola.io.config.json') : nconf.get('conf');
+
 //Configuration
 nconf.argv()
-  .env()
-  .file({ file: (configFile)});
+  .env();
+
+var configFile =typeof nconf.get('conf') == 'undefined' ? path.join(__dirname ,'./config/joola.io.config.json') : nconf.get('conf');
+
+nconf.file({ file: (configFile)});
 
 var port = nconf.get('server:port');
 var secureport = nconf.get('server:securePort');
