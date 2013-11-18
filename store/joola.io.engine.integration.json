@@ -16,7 +16,7 @@
         "port": 3306,
         "user": "joolaio",
         "password": "joolaio",
-        "dbname": "demo_serverfault",
+        "dbname": "demo_stackoverflow",
         "limit": null,
         "minresolution": "day",
         "enddate": {
@@ -97,7 +97,7 @@
             "caching": {
               "system": {
                 "type": "mongo",
-                "url": "mongodb://db.joola.io/demo_serverfault"
+                "url": "mongodb://db.joola.io/demo_stackoverflow"
               },
               "baseline": 0,
               "step": 30,
@@ -204,7 +204,7 @@
             "caching": {
               "system": {
                 "type": "mongo",
-                "url": "mongodb://db.joola.io/demo_serverfault"
+                "url": "mongodb://db.joola.io/demo_stackoverflow"
               },
 
               "baseline": 0,
