@@ -31,8 +31,9 @@ joola.logger = logger;
 nconf.argv()
   .env();
 
-var configFile =typeof nconf.get('conf') == 'undefined' ? path.join(__dirname ,'./config/joola.io.config.json') : nconf.get('conf');
-
+joola.logger.debug('Environment config file setting: ' + nconf.get('conf'));
+var configFile = typeof nconf.get('conf') == 'undefined' ? path.join(__dirname, './config/joola.io.config.json') : nconf.get('conf');
+joola.logger.debug('Resolving config from: ' + configFile);
 nconf.file({ file: (configFile)});
 
 var port = nconf.get('server:port');
@@ -99,7 +100,9 @@ app.get('/conf/:id', function (req, res) {
     if (err) {
       return res.json({result: false, err: err});
     }
-    var content = {result: true, conf: JSON.parse(data)};
+    var content = {result: true,
+      physicalFile: filePath,
+      conf: JSON.parse(data)};
 
     // Invoke the next step here however you like
     res.json(content);
